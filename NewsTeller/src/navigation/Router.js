@@ -16,7 +16,7 @@ export default Router = () => {
         <Stack.Screen
           name="Main"
           component={Main}
-          options={{headerLeft: null, title: "What's up Trump ?"}}
+          options={{headerLeft: null, title: 'News Teller'}}
         />
         <Stack.Screen
           name="Article"
