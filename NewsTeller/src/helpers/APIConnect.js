@@ -52,17 +52,17 @@ const fetchApiNewsTeller = async (setLoading, setArticles, searchTerm) => {
 /* ============================= Local Json server ============================= */
 
 // Fetch local json server for articles
-const fetchNewsLocalServer = async (setLoading, setArticles, searchTerm) => {
+const fetchNewsLocalServer = async (setLoading, setArticles, category) => {
   setLoading(true);
-  if (searchTerm == '') {
-    searchTerm = 'sport';
+  if (category == '') {
+    category = 'sport';
   }
 
   // Local address when emulating the app on android and hosting server on localhost port 3002
   fetch('http://10.0.2.2:3002/response')
     .then((response) => response.json())
     .then((json) => {
-      setArticles(processArticles(json[searchTerm].hits));
+      setArticles(processArticles(json[category].hits));
       setLoading(false);
     })
     .catch((error) => {
@@ -89,13 +89,13 @@ const fetchCategoriesLocalServer = async (setLoading, setCategories) => {
 /* ============================= Local File ============================= */
 
 // Load articles from local file
-const loadArticles = (setLoading, setArticles, searchTerm) => {
+const loadArticles = (setLoading, setArticles, category) => {
   setLoading(true);
-  if (searchTerm == '') {
-    searchTerm = 'sport';
+  if (category == '') {
+    category = 'sport';
   }
   const data = require('@data/categories.json');
-  setArticles(processArticles(data.response[searchTerm].hits));
+  setArticles(processArticles(data.response[category].hits));
   setLoading(false);
 };
 
