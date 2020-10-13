@@ -7,6 +7,9 @@ export const textSize = 12;
 export const titleColor = 'black';
 export const titleSize = 14;
 
+export const colorTextButton = 'black';
+export const textSizeButton = 14;
+
 export const metaDataColor = 'gray';
 
 export const headerFont = font;
