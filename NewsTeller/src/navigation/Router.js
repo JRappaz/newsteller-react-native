@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {basicHeader} from '@themes/Headers';
 
 import Main from '@pages/Main';
-import Article from '@pages/Article';
+import WebDisplayer from '@pages/WebDisplayer';
 
 const Stack = createStackNavigator();
 
@@ -19,9 +19,9 @@ export default Router = () => {
           options={{headerLeft: null, title: 'News Teller'}}
         />
         <Stack.Screen
-          name="Article"
-          component={Article}
-          options={{title: "What's up Trump ?"}}
+          name="WebDisplayer"
+          component={WebDisplayer}
+          options={{title: 'News Teller'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
