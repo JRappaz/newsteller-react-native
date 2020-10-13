@@ -1,5 +1,9 @@
+import React from 'react';
+
 import {HeaderColor} from '@themes/Colors';
 import {headerFont, headerTextSize, headerTextColor} from '@themes/Text';
+
+import LogoTitle from '@components/LogoTitle';
 
 // Header style
 export const basicHeader = {
@@ -12,4 +16,7 @@ export const basicHeader = {
     fontFamily: headerFont,
     fontSize: headerTextSize,
   },
+  headerTitle: () => <LogoTitle />,
 };
+
+export const basicHeaderOptions = {};

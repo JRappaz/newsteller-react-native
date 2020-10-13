@@ -1,7 +1,7 @@
-export const BackgroundColor = '#51cac4ff';
-export const HeaderColor = '#51cac4ff';
+export const BackgroundColor = 'white';
+export const HeaderColor = 'white';
 
 export const NewsCardBackGrounfColor = 'white';
 export const ArticleBackgroundColor = 'white';
 
-export const ActivityIndicatorColor = '#0000ff';
+export const ActivityIndicatorColor = '#4aa69d';
