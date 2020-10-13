@@ -1,18 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  FlatList,
-  ActivityIndicator,
-  TextInput,
-  Button,
-  Text,
-} from 'react-native';
+import {View, FlatList, ActivityIndicator, TextInput, Text} from 'react-native';
 import {styles} from './style';
 import {ActivityIndicatorColor} from '@themes/Colors';
 
 import {fetchNewsApi} from '@helpers/APIConnect';
 
 import NewsCard from '@components/NewsCard';
+import ButtonBar from '@components/ButtonBar';
 
 /**
  * Display a list of articles in NewsCard fetched from APIConnect
@@ -46,7 +40,7 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
               />
             </View>
             <View style={styles.buttonContainer}>
-              <Button
+              <ButtonBar
                 title={'search'}
                 onPress={() =>
                   fetchNewsApi(setLoading, setArticles, searchInput)
