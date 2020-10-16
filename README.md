@@ -4,4 +4,4 @@ Projet developments are maintained in the [report](https://docs.google.com/prese
 
 This repository is constitued of two composants: 
   - [React-native mobile application](NewsTeller) which displays articles.
-  - [Json server](Json-server) which can be used to simulate News-Teller API.
+  - [Json server](Json server) which can be used to simulate News-Teller API.
