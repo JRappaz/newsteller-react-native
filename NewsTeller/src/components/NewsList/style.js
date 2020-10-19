@@ -25,6 +25,8 @@ export const styles = createStyles({
     backgroundColor: Colors.textInputs,
     paddingHorizontal: Spaces.mid,
     textTransform: 'capitalize',
+    height: Shapes.midSize,
+    justifyContent: 'center',
   },
   titleContainer: {
     ...BasicStyles.container,
