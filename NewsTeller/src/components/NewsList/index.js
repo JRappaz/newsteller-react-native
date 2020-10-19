@@ -34,7 +34,7 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
           <View>
             <View style={styles.textInputContainer}>
               <TextInput
-                placeholder="search.."
+                placeholder="Search..."
                 onChangeText={(newText) => setSearchInput(newText)}
                 value={searchInput}
               />

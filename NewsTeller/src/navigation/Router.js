@@ -1,5 +1,4 @@
 import React from 'react';
-import {Image, View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -16,7 +15,11 @@ export default Router = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={basicHeader} initialRouteName="Main">
         <Stack.Screen name="Main" component={Main} />
-        <Stack.Screen name="WebDisplayer" component={WebDisplayer} />
+        <Stack.Screen
+          name="WebDisplayer"
+          component={WebDisplayer}
+          options={{headerBackTitle: 'Back'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
