@@ -1,11 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-import {BackgroundColor} from '@themes/Colors';
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: BackgroundColor,
-  },
-});
+export const styles = createStyles({});

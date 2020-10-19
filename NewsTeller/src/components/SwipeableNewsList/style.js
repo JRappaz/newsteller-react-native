@@ -1,15 +1,15 @@
-import {StyleSheet} from 'react-native';
 import {
-  font,
-  textSize,
-  titleColor,
-  titleSize,
-  metaDataColor,
-} from '@themes/Text';
-import {NewsCardBackGrounfColor} from '@themes/Colors';
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+export const styles = createStyles({
+  swipeButtons: {
+    fontSize: 60,
+    color: Colors.SECONDARY_COLOR,
   },
 });

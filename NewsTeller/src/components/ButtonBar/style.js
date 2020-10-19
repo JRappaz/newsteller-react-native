@@ -1,21 +1,24 @@
-import {StyleSheet} from 'react-native';
-import {buttonFont, buttonTextSize, buttonTextColor} from '@themes/Text';
-import {buttonColor} from '@themes/Colors';
+import {
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
+export const styles = createStyles({
   container: {
     width: '100%',
-    height: 40,
+    height: Shapes.midSize,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: buttonColor,
-    borderRadius: 5,
-    opacity: 0.2,
+    backgroundColor: Colors.buttons,
+    borderRadius: Shapes.rounded,
+    opacity: 0.6,
   },
   title: {
-    fontFamily: buttonFont,
-    fontSize: buttonTextSize,
-    color: buttonTextColor,
-    textTransform: 'capitalize',
+    ...BasicStyles.title1,
+    color: Colors.buttonsText,
   },
 });

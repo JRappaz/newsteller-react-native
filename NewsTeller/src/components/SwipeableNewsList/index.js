@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Colors} from '@styles';
 
 import {styles} from './style';
 
@@ -6,7 +7,7 @@ import NewsList from '@components/NewsList';
 import Swiper from 'react-native-swiper';
 
 import {fetchCategoriesApi} from '@helpers/APIConnect';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, Text} from 'react-native';
 
 /**
  * Display NewsLists that can be swipped
@@ -29,7 +30,11 @@ export default SwipeableNewsList = ({navigation}) => {
           loop={false}
           loadMinimal={true}
           loadMinimalSize={1}
-          showsButtons={true}>
+          showsButtons={true}
+          dotColor={Colors.LIGHT_GREY}
+          activeDotColor={Colors.SECONDARY_COLOR} //{Colors.SECONDARY_COLOR}
+          nextButton={<Text style={styles.swipeButtons}>›</Text>}
+          prevButton={<Text style={styles.swipeButtons}>‹</Text>}>
           {
             // Adding a void category creates a search NewsList
             ['', ...categories].map((item) => (

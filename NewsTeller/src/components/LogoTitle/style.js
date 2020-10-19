@@ -1,28 +1,32 @@
-import {StyleSheet} from 'react-native';
-import {headerFont, headerTextSize, headerTextColor} from '@themes/Text';
+import {
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
+export const styles = createStyles({
   container: {
-    flex: 1,
-    width: '100%',
+    ...BasicStyles.container,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'flex-start',
-    alignSelf: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontFamily: headerFont,
-    fontSize: headerTextSize,
+    ...BasicStyles.title1,
     fontWeight: 'bold',
-    color: headerTextColor,
+    color: Colors.headerText,
   },
   logo: {
-    marginRight: 10,
-    width: 40,
-    height: 40,
+    width: Shapes.midSize,
+    height: Shapes.midSize,
     resizeMode: 'contain',
+    marginRight: Spaces.mid,
   },
 });
+
 /*
 container: {
   flex: 1,

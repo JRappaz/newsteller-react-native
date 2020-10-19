@@ -1,44 +1,46 @@
-import {StyleSheet} from 'react-native';
-import {font, titleSize, titleColor} from '@themes/Text';
+import {
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topContainer: {
-    flex: 1,
-  },
+export const styles = createStyles({
   bottomContainer: {
-    flex: 5,
+    ...BasicStyles.container,
+    flex: 4,
   },
   buttonContainer: {
-    marginBottom: 10,
+    ...BasicStyles.container,
+    marginBottom: Spaces.mid,
     width: '90%',
-    alignSelf: 'center',
   },
   textInputContainer: {
-    borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: Shapes.rounded,
     width: '90%',
     alignSelf: 'center',
-    marginVertical: 10,
+    marginVertical: Spaces.mid,
+    backgroundColor: Colors.textInputs,
+    paddingHorizontal: Spaces.mid,
+    textTransform: 'capitalize',
+  },
+  titleContainer: {
+    ...BasicStyles.container,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    flex: 1,
-    fontFamily: font,
-    fontSize: 30,
-    color: titleColor,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    textTransform: 'capitalize',
+    ...BasicStyles.title1,
+    fontSize: TextFormat.extraLargeSize,
+    alignSelf: 'center',
+    color: Colors.SECONDARY_COLOR,
   },
   list: {
     flex: 1,
     width: '100%',
-    marginTop: 10,
+    marginTop: Spaces.mid,
     marginBottom: 60,
-  },
-  button: {
-    color: 'yellow',
   },
 });

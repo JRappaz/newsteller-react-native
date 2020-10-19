@@ -1,7 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export const styles = createStyles();

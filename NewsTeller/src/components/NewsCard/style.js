@@ -1,39 +1,33 @@
-import {StyleSheet} from 'react-native';
 import {
-  font,
-  textSize,
-  titleColor,
-  titleSize,
-  metaDataColor,
-} from '@themes/Text';
-import {NewsCardBackGrounfColor} from '@themes/Colors';
+  createStyles,
+  Colors,
+  TextFormat,
+  Shapes,
+  Spaces,
+  BasicStyles,
+} from '@styles';
 
-export const styles = StyleSheet.create({
+export const styles = createStyles({
   container: {
-    flex: 1,
-    width: '90%',
-    backgroundColor: NewsCardBackGrounfColor,
-    alignSelf: 'center',
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 5,
+    ...BasicStyles.container,
+    width: '85%',
+    backgroundColor: Colors.newsCardBackground,
+    marginBottom: Spaces.mid,
+    padding: Spaces.mid,
+    borderRadius: Shapes.rounded,
   },
   title: {
-    fontFamily: font,
-    fontSize: titleSize,
-    color: titleColor,
+    ...BasicStyles.title2,
+    color: Colors.title,
   },
   text: {
-    fontFamily: font,
-    fontSize: textSize,
-    color: metaDataColor,
+    ...BasicStyles.text,
+    color: Colors.metaData,
   },
-  metaData: {},
   metaDataBox: {
-    flex: 1,
-    width: '100%',
+    ...BasicStyles.container,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: Spaces.mid,
   },
 });

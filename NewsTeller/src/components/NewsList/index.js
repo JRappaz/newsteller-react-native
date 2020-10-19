@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, FlatList, ActivityIndicator, TextInput, Text} from 'react-native';
 import {styles} from './style';
-import {ActivityIndicatorColor} from '@themes/Colors';
-
+import {Colors} from '@styles';
 import {fetchNewsApi} from '@helpers/APIConnect';
 
 import NewsCard from '@components/NewsCard';
@@ -28,7 +27,7 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}>
+      <View style={styles.container}>
         {isWithSearch ? (
           // Allow user to do research if option isWithSearch activated
           <View>
@@ -49,12 +48,14 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
             </View>
           </View>
         ) : (
-          <Text style={styles.title}>{searchTerm}</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{searchTerm}</Text>
+          </View>
         )}
       </View>
       <View style={styles.bottomContainer}>
         {isLoading ? (
-          <ActivityIndicator size="small" color={ActivityIndicatorColor} />
+          <ActivityIndicator size="small" color={Colors.activityIndicator} />
         ) : (
           <FlatList
             style={styles.list}

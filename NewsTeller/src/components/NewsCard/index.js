@@ -29,13 +29,13 @@ export default NewsCard = ({navigation, newsItem}) => {
         }}>
         <Text style={styles.title}>{newsItem.title}</Text>
         <View style={styles.metaDataBox}>
-          <Text style={[styles.text, styles.metaData]}>{newsItem.handle}</Text>
-          <Text style={[styles.text, styles.metaData]}>{'-'}</Text>
-          <Text style={[styles.text, styles.metaData]}>
+          <Text style={styles.text}>{newsItem.handle}</Text>
+          <Text style={styles.text}>{'-'}</Text>
+          <Text style={styles.text}>
             {reaction == 0 ? 'No reactions' : reaction}
           </Text>
-          <Text style={[styles.text, styles.metaData]}>{'-'}</Text>
-          <Text style={[styles.text, styles.metaData]}>
+          <Text style={styles.text}>{'-'}</Text>
+          <Text style={styles.text}>
             {new Date(newsItem.publish_datetime).toLocaleDateString()}
           </Text>
         </View>
