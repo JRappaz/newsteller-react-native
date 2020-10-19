@@ -9,6 +9,9 @@
 ## General info
 NewsTeller is a research-driven platform to analyze news. This project is a introduction to a possible mobile application. This application display multiple news feed based on categories. It allows user to do basic word related research.
 
+<img src="https://user-images.githubusercontent.com/44334351/96505426-63748480-1256-11eb-813f-72c42b28909a.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/44334351/96505631-b4847880-1256-11eb-839b-532d3c45e34b.jpeg" width="200">
+
+
 ## Architecture
 
 ### Components
