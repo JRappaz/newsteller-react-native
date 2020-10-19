@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, ActivityIndicator, TextInput, Text} from 'react-native';
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  TextInput,
+  Text,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {styles} from './style';
 import {Colors} from '@styles';
 import {fetchNewsApi} from '@helpers/APIConnect';
@@ -25,8 +32,8 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
 
   const _keyExtractor = (item, index) => 'list-item-' + index;
 
-  return (
-    <View style={styles.container}>
+  const topComponent = () => {
+    return (
       <View style={styles.container}>
         {isWithSearch ? (
           // Allow user to do research if option isWithSearch activated
@@ -53,21 +60,25 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
           </View>
         )}
       </View>
-      <View style={styles.bottomContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="small" color={Colors.activityIndicator} />
-        ) : (
-          <FlatList
-            style={styles.list}
-            data={articles}
-            keyExtractor={_keyExtractor}
-            numColumns={1}
-            renderItem={({item}) => (
-              <NewsCard navigation={navigation} newsItem={item} />
-            )}
-          />
-        )}
-      </View>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size="small" color={Colors.activityIndicator} />
+      ) : (
+        <FlatList
+          ListHeaderComponent={topComponent}
+          style={styles.list}
+          data={articles}
+          keyExtractor={_keyExtractor}
+          numColumns={1}
+          renderItem={({item}) => (
+            <NewsCard navigation={navigation} newsItem={item} />
+          )}
+        />
+      )}
     </View>
   );
 };
