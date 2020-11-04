@@ -1,10 +1,23 @@
 /* ============================= APIConnect interface ============================= */
 
 // Global fetching article method, uncomment to choose the source
-export const fetchNewsApi = (setLoading, setArticles, searchTerm) => {
+export const fetchArticlesWithSearchTerm = (
+  setLoading,
+  setArticles,
+  searchTerm,
+) => {
+  fetchApiNewsTeller(setLoading, setArticles, searchTerm);
+};
+
+// Global fetching article method, uncomment to choose the source
+export const fetchArticlesFromCategory = (
+  setLoading,
+  setArticles,
+  category,
+) => {
   //fetchNewsLocalServer(setLoading, setArticles, searchTerm);
   //fetchApiNewsTeller(setLoading, setArticles, searchTerm);
-  loadArticles(setLoading, setArticles, searchTerm);
+  loadArticles(setLoading, setArticles, category);
 };
 
 // Global fetching categories method, uncomment to choose the source
