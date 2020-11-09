@@ -7,7 +7,7 @@
 * [Setup](#setup)
 
 ## General info
-NewsTeller is a research-driven platform to analyze news. This project is a introduction to a possible mobile application. This application display multiple news feed based on categories. It allows user to do basic word related research.
+NewsTeller is a research-driven platform to analyze news. This project is an introduction to a possible mobile application. This application displays multiple news feeds based on categories. It lets user do basic word related queries.
 
 <img src="https://user-images.githubusercontent.com/44334351/96505426-63748480-1256-11eb-813f-72c42b28909a.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/44334351/96505631-b4847880-1256-11eb-839b-532d3c45e34b.jpeg" width="200">
 
@@ -18,13 +18,13 @@ NewsTeller is a research-driven platform to analyze news. This project is a intr
 [Components](src/components) are react-native bricks. They are used to build pages.
 There are three components:
 * [NewsCard](src/components/NewsCard) is the representation of a news article.
-* [NewsList](src/components/NewsList) is a list of NewsCard. Depending on given options it offers a input to allow user to search for precise term.
+* [NewsList](src/components/NewsList) is a list of NewsCards. It could feature a search box.
 * [SwipeableNewsList](src/components/SwipeableNewsList) is a swiper between multiple NewsList.
 
 ### Pages
 [Pages](src/pages) are the screens. The [navigation](src/navigation) is used to switch stack-wise between pages.
 There are two different pages:
-* [Main](src/pages/Main) is the def ault screen displaying a SwipeableNewsList.
+* [Main](src/pages/Main) is the default screen displaying a SwipeableNewsList.
 * [WebDisplayer](src/pages/WebDisplayer) is used to display a web page in full screen within the app.
 
 ### Helpers
@@ -32,7 +32,7 @@ There are two different pages:
 * [APIConnect](src/helpers/APIConnect.js) is the interface between (fake) API and the app.
 
 ## Technologies
-This project use multiple react-native libraries as detailled in [package.json](package.json). Here are links to diffrent repos:
+This project use multiple react-native libraries as detailled in [package.json](package.json). The repos are:
 * [React-Navigation](https://reactnavigation.org) Which depends on:
   * [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
   * [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)
@@ -44,7 +44,7 @@ This project use multiple react-native libraries as detailled in [package.json](
 * [react-native-webview](https://github.com/react-native-webview/react-native-webview)
 
 ## Setup
-To run this moblie application, react-native bare workflow environment (react-native CLI) is needed, follow [this guide](https://reactnative.dev/docs/environment-setup). 
+To run this mobile application, react-native bare workflow environment (react-native CLI) is needed, follow [this guide](https://reactnative.dev/docs/environment-setup). 
 Then clone this repo:
 ```
 $ git clone https://github.com/JRappaz/newsteller-react-native.git
@@ -58,7 +58,7 @@ Run it on your device or on an emulator using:
 ```
 $ npx react-native run-android
 ```
-For ios a few extra steps are needed:
+For iOS a few extra steps are needed:
 ```
 $ cd ios
 $ pod install
