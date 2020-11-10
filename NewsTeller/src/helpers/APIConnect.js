@@ -5,6 +5,7 @@ export const fetchArticlesWithSearchTerm = (
   setLoading,
   setArticles,
   searchTerm,
+  pageToken,
 ) => {
   fetchApiNewsTeller(setLoading, setArticles, searchTerm);
 };
@@ -14,6 +15,7 @@ export const fetchArticlesFromCategory = (
   setLoading,
   setArticles,
   category,
+  pageToken,
 ) => {
   //fetchNewsLocalServer(setLoading, setArticles, searchTerm);
   //fetchApiNewsTeller(setLoading, setArticles, searchTerm);
@@ -57,7 +59,8 @@ const fetchApiNewsTeller = async (setLoading, setArticles, searchTerm) => {
     .then((response) => response.json())
     .then((json) => json.data.hits)
     .then((data) => {
-      setArticles(data);
+      console.warn;
+      setArticles((articles) => [...articles, ...data]);
       setLoading(false);
     });
 };
@@ -107,8 +110,9 @@ const loadArticles = (setLoading, setArticles, category) => {
   if (category == '') {
     category = 'sport';
   }
-  const data = require('@data/categories.json');
-  setArticles(processArticles(data.response[category].hits));
+  var data = require('@data/categories.json');
+  data = processArticles(data.response[category].hits);
+  setArticles((articles) => [...articles, ...data]);
   setLoading(false);
 };
 

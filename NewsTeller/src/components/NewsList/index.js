@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, FlatList, ActivityIndicator, TextInput, Text} from 'react-native';
 import {styles} from './style';
 import {Colors} from '@styles';
@@ -21,18 +21,39 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
 
   const [searchInput, setSearchInput] = useState('');
 
+  const [shouldFetch, setShouldFetch] = useState(false);
+  const [page, setPage] = useState(0);
+
+  const fetchMore = useCallback(() => setShouldFetch(true), []);
+
   useEffect(() => {
     // Initial fetch for articles
     if (!isLoading && articles.length == 0) {
-      fetchArticlesFromCategory(setLoading, setArticles, searchTerm);
+      fetchArticlesFromCategory(setLoading, setArticles, searchTerm, page);
     }
-  });
+
+    if (!shouldFetch) {
+      return;
+    }
+
+    const fetch = async () => {
+      console.warn('Fetch !');
+      fetchArticlesFromCategory(setLoading, setArticles, searchTerm, page);
+
+      setShouldFetch(false);
+
+      //increment page for the next call
+      setPage(page + 1);
+    };
+
+    fetch();
+  }, [shouldFetch, articles]);
 
   const _keyExtractor = (item, index) => 'list-item-' + index;
 
   return (
     <View style={styles.container}>
-      {isLoading ? (
+      {isLoading && articles == [] ? (
         <ActivityIndicator size="small" color={Colors.activityIndicator} />
       ) : (
         <FlatList
@@ -56,6 +77,7 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
                           setLoading,
                           setArticles,
                           searchInput,
+                          page,
                         )
                       }
                     />
@@ -72,6 +94,8 @@ export default NewsList = ({navigation, searchTerm, isWithSearch = false}) => {
           data={articles}
           keyExtractor={_keyExtractor}
           numColumns={1}
+          onEndReachedThreshold={0.8}
+          onEndReached={fetchMore}
           renderItem={({item}) => (
             <NewsCard navigation={navigation} newsItem={item} />
           )}
