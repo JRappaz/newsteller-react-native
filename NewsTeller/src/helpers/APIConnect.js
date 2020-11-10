@@ -1,13 +1,18 @@
 /* ============================= APIConnect interface ============================= */
 
+export const DEFAULT_SEARCH_OPTIONS = {
+  aggregations: "articles_over_time",
+  current: 1,
+  filters: [],
+  resultsPerPage: 10,
+  searchTerm: "",
+  sortDirection: "desc",
+  sortField: "date",
+};
+
 // Global fetching article method, uncomment to choose the source
-export const fetchArticlesWithSearchTerm = (
-  setLoading,
-  setArticles,
-  searchTerm,
-  pageToken,
-) => {
-  fetchApiNewsTeller(setLoading, setArticles, searchTerm);
+export const fetchArticlesWithOptions = (setLoading, setArticles, options) => {
+  fetchApiNewsTeller(setLoading, setArticles, options);
 };
 
 // Global fetching article method, uncomment to choose the source
@@ -15,7 +20,7 @@ export const fetchArticlesFromCategory = (
   setLoading,
   setArticles,
   category,
-  pageToken,
+  pageToken
 ) => {
   //fetchNewsLocalServer(setLoading, setArticles, searchTerm);
   //fetchApiNewsTeller(setLoading, setArticles, searchTerm);
@@ -30,52 +35,43 @@ export const fetchCategoriesApi = (setLoading, setCategories) => {
 
 /* ============================= News-Teller API ============================= */
 
-// Fetch News-Teller API for artticles: only word researcch implemented
-const fetchApiNewsTeller = async (setLoading, setArticles, searchTerm) => {
+// Fetch News-Teller API for articles
+const fetchApiNewsTeller = async (setLoading, setArticles, options) => {
   setLoading(true);
 
-  const data = {
-    aggregations: 'articles_over_time',
-    current: 1,
-    filters: [],
-    resultsPerPage: 10,
-    searchTerm: searchTerm,
-    sortDirection: 'desc',
-    sortField: 'date',
-  };
+  const url = "https://newsteller.io/api/v1/article/search/";
 
-  const url = 'https://newsteller.io/api/v1/article/search/';
-
-  const string = JSON.stringify(data);
+  const string = JSON.stringify(options);
 
   fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: string,
   })
     .then((response) => response.json())
     .then((json) => json.data.hits)
     .then((data) => {
-      console.warn;
-      setArticles((articles) => [...articles, ...data]);
+      options.current == 1
+        ? setArticles(data)
+        : setArticles((articles) => [...articles, ...data]);
       setLoading(false);
     });
 };
 
 /* ============================= Local Json server ============================= */
 
-// Fetch local json server for articles
+// Fetch local json server for articles in a certain category
 const fetchNewsLocalServer = async (setLoading, setArticles, category) => {
   setLoading(true);
-  if (category == '') {
-    category = 'sport';
+  if (category == "") {
+    category = "sport";
   }
 
   // Local address when emulating the app on android and hosting server on localhost port 3002
-  fetch('http://10.0.2.2:3002/response')
+  fetch("http://10.0.2.2:3002/response")
     .then((response) => response.json())
     .then((json) => {
       setArticles(processArticles(json[category].hits));
@@ -90,7 +86,7 @@ const fetchNewsLocalServer = async (setLoading, setArticles, category) => {
 const fetchCategoriesLocalServer = async (setLoading, setCategories) => {
   // Local address when emulating the app on android and hosting server on localhost port 3002
   setLoading(true);
-  fetch('http://10.0.2.2:3002/response')
+  fetch("http://10.0.2.2:3002/response")
     .then((response) => response.json())
     .then((json) => {
       const keys = Object.keys(json);
@@ -104,13 +100,13 @@ const fetchCategoriesLocalServer = async (setLoading, setCategories) => {
 
 /* ============================= Local File ============================= */
 
-// Load articles from local file
+// Load articles of a category from local file
 const loadArticles = (setLoading, setArticles, category) => {
   setLoading(true);
-  if (category == '') {
-    category = 'sport';
+  if (category == "") {
+    category = "sport";
   }
-  var data = require('@data/categories.json');
+  var data = require("@data/categories.json");
   data = processArticles(data.response[category].hits);
   setArticles((articles) => [...articles, ...data]);
   setLoading(false);
@@ -119,7 +115,7 @@ const loadArticles = (setLoading, setArticles, category) => {
 // Load categories local from file
 const loadCategories = (setLoading, setCategories) => {
   setLoading(true);
-  const data = require('@data/categories.json');
+  const data = require("@data/categories.json");
   const keys = Object.keys(data.response);
   setCategories(keys);
   setLoading(false);
