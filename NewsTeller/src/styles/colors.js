@@ -18,3 +18,5 @@ export const text = BLACK;
 export const title = BLACK;
 export const buttonsText = BLACK;
 export const headerText = BLACK;
+
+export const EMPTY_IMAGE = GREY;
