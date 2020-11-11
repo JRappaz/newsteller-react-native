@@ -14,7 +14,9 @@ export const styles = createStyles({
     backgroundColor: Colors.newsCardBackground,
     marginBottom: Spaces.mid,
     padding: Spaces.mid,
-    borderRadius: Shapes.rounded,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     ...BasicStyles.title2,
@@ -25,9 +27,22 @@ export const styles = createStyles({
     color: Colors.metaData,
   },
   metaDataBox: {
-    ...BasicStyles.container,
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: Spaces.mid,
   },
+  textContainer: {
+    ...BasicStyles.container,
+    flex: 4,
+  },
+  imageContainer: {
+    ...BasicStyles.container,
+    flex: 1,
+    backgroundColor: Colors.EMPTY_IMAGE,
+    marginLeft: 15,
+    borderRadius: Shapes.rounded,
+    width: 60,
+    height: 60,
+  },
+  image: { flex: 1 },
 });

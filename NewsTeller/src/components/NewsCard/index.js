@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { styles } from "./style";
 
@@ -19,13 +19,14 @@ export default memo(function NewsCard({ navigation, newsItem }) {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          // Navigate to WebDisplayer when the user clicks on the card
-          navigation.navigate("WebDisplayer", { url: newsItem.url });
-        }}
-      >
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        // Navigate to WebDisplayer when the user clicks on the card
+        navigation.navigate("WebDisplayer", { url: newsItem.url });
+      }}
+    >
+      <View style={styles.textContainer}>
         <Text style={styles.title}>{newsItem.title}</Text>
         <View style={styles.metaDataBox}>
           <Text style={styles.text}>{newsItem.handle}</Text>
@@ -38,7 +39,19 @@ export default memo(function NewsCard({ navigation, newsItem }) {
             {new Date(newsItem.publish_datetime).toLocaleDateString()}
           </Text>
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+      <View style={styles.imageContainer}>
+        {newsItem.image_url ? (
+          <Image
+            style={styles.image}
+            source={{
+              uri: newsItem.image_url,
+            }}
+          />
+        ) : (
+          <View />
+        )}
+      </View>
+    </TouchableOpacity>
   );
 });
