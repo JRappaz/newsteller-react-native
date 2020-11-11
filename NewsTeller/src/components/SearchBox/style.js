@@ -8,6 +8,10 @@ import {
 } from "@styles";
 
 export const styles = createStyles({
+  container: {
+    ...BasicStyles.container,
+    width: "85%",
+  },
   bottomContainer: {
     ...BasicStyles.container,
     flex: 4,
@@ -15,11 +19,10 @@ export const styles = createStyles({
   buttonContainer: {
     ...BasicStyles.container,
     marginBottom: Spaces.mid,
-    width: "90%",
   },
   textInputContainer: {
+    width: "100%",
     borderRadius: Shapes.rounded,
-    width: "90%",
     alignSelf: "center",
     marginVertical: Spaces.mid,
     backgroundColor: Colors.textInputs,
@@ -27,5 +30,16 @@ export const styles = createStyles({
     textTransform: "capitalize",
     height: Shapes.midSize,
     justifyContent: "center",
+  },
+  pickersContainer: {
+    ...BasicStyles.container,
+    flex: 1,
+    flexDirection: "row",
+  },
+  smallPicker: {
+    flex: 4,
+  },
+  largePicker: {
+    flex: 5,
   },
 });

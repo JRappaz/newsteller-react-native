@@ -5,12 +5,12 @@ import {
   Shapes,
   Spaces,
   BasicStyles,
-} from '@styles';
+} from "@styles";
 
 export const styles = createStyles({
   container: {
     ...BasicStyles.container,
-    width: '85%',
+    width: "85%",
     backgroundColor: Colors.newsCardBackground,
     marginBottom: Spaces.mid,
     padding: Spaces.mid,
@@ -26,8 +26,8 @@ export const styles = createStyles({
   },
   metaDataBox: {
     ...BasicStyles.container,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: Spaces.mid,
   },
 });

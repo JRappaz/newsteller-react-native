@@ -10,9 +10,21 @@ export const DEFAULT_SEARCH_OPTIONS = {
   sortField: "date",
 };
 
+/*
+filters: [
+    { field: "lang", values: ["fr"], type: "all" },
+    { field: "handle", values: ["BFMTV"], type: "all" },
+  ],
+  */
+
 // Global fetching article method, uncomment to choose the source
-export const fetchArticlesWithOptions = (setLoading, setArticles, options) => {
-  fetchApiNewsTeller(setLoading, setArticles, options);
+export const fetchArticlesWithOptions = (
+  setLoading,
+  setArticles,
+  setSources,
+  options
+) => {
+  fetchApiNewsTeller(setLoading, setArticles, setSources, options);
 };
 
 // Global fetching article method, uncomment to choose the source
@@ -33,10 +45,39 @@ export const fetchCategoriesApi = (setLoading, setCategories) => {
   loadCategories(setLoading, setCategories);
 };
 
+export const fetchSources = async (setLoading, setSources) => {
+  setLoading(true);
+
+  const url = "https://newsteller.io/api/v1/article/search/";
+
+  const string = JSON.stringify(DEFAULT_SEARCH_OPTIONS);
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: string,
+  })
+    .then((response) => response.json())
+    .then((json) => json.data.aggregations.handle.buckets)
+    .then((data) => {
+      data = data.map((obj) => obj.key);
+      setSources(data);
+      setLoading(false);
+    });
+};
+
 /* ============================= News-Teller API ============================= */
 
 // Fetch News-Teller API for articles
-const fetchApiNewsTeller = async (setLoading, setArticles, options) => {
+const fetchApiNewsTeller = async (
+  setLoading,
+  setArticles,
+  setSources,
+  options
+) => {
   setLoading(true);
 
   const url = "https://newsteller.io/api/v1/article/search/";
@@ -52,11 +93,16 @@ const fetchApiNewsTeller = async (setLoading, setArticles, options) => {
     body: string,
   })
     .then((response) => response.json())
-    .then((json) => json.data.hits)
+    .then((json) => json.data)
     .then((data) => {
+      const articles = data.hits;
+      const sources = data.aggregations.handle.buckets.map((obj) => obj.key);
+
       options.current == 1
-        ? setArticles(data)
-        : setArticles((articles) => [...articles, ...data]);
+        ? setArticles(articles)
+        : setArticles((prevArticles) => [...prevArticles, ...articles]);
+      setSources(sources);
+
       setLoading(false);
     });
 };

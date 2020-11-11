@@ -26,6 +26,8 @@ import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   const [resetCount, setResetCount] = useState(0);
 
+  const [sources, setSources] = useState([]);
+
   const [isLoading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
 
@@ -52,7 +54,7 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   const fetchNextPage = () => {
     setShouldFetch(false);
     isWithSearch
-      ? fetchArticlesWithOptions(setLoading, setArticles, {
+      ? fetchArticlesWithOptions(setLoading, setArticles, setSources, {
           ...searchOptions,
           ...{ current: page },
         })
@@ -72,7 +74,10 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
           ListHeaderComponent={
             <View style={styles.container}>
               {isWithSearch ? (
-                <SearchBox setAndFetch={setOptionsAndInitFetch} />
+                <SearchBox
+                  setAndFetch={setOptionsAndInitFetch}
+                  sources={sources}
+                />
               ) : (
                 <View style={styles.titleContainer}>
                   <Text style={styles.title}>{category}</Text>

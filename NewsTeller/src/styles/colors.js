@@ -1,10 +1,10 @@
-export const WHITE = 'white';
-export const BLACK = 'black';
-export const GREY = 'grey';
-export const SECONDARY_COLOR = '#4aa69d';
-export const SECONDARY_COLOR_LIGHT = '#daecea';
+export const WHITE = "white";
+export const BLACK = "black";
+export const GREY = "grey";
+export const SECONDARY_COLOR = "#4aa69d";
+export const SECONDARY_COLOR_LIGHT = "#daecea";
 
-export const LIGHT_GREY = '#eee';
+export const LIGHT_GREY = "#eee";
 
 export const background = WHITE;
 export const headerColor = WHITE;
