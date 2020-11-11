@@ -40,9 +40,9 @@ export const styles = createStyles({
     flex: 1,
     backgroundColor: Colors.EMPTY_IMAGE,
     marginLeft: 15,
-    borderRadius: Shapes.rounded,
     width: 60,
     height: 60,
+    borderRadius: Shapes.veryRounded,
   },
-  image: { flex: 1 },
+  image: { flex: 1, borderRadius: Shapes.veryRounded },
 });

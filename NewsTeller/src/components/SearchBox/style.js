@@ -29,7 +29,9 @@ export const styles = createStyles({
     paddingHorizontal: Spaces.mid,
     textTransform: "capitalize",
     height: Shapes.midSize,
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
   },
   pickersContainer: {
     ...BasicStyles.container,
@@ -41,5 +43,11 @@ export const styles = createStyles({
   },
   largePicker: {
     flex: 5,
+  },
+  logo: {
+    width: Shapes.smallSize,
+    height: Shapes.smallSize,
+    resizeMode: "contain",
+    marginRight: Spaces.mid,
   },
 });

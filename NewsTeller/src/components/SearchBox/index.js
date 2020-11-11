@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, Image } from "react-native";
 import { styles } from "./style";
 
 import ButtonBar from "@components/ButtonBar";
 import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 
 import { Picker } from "@react-native-picker/picker";
+import { NewsTellerLogo } from "@assets/icons";
 
 /**
  *  Search box to let user select search options
@@ -45,17 +46,17 @@ export default SearchBox = ({ setAndFetch, sources }) => {
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
+        <Image source={NewsTellerLogo} style={styles.logo} />
         <TextInput
           placeholder="Search..."
           onChangeText={(newSearchTerm) =>
             updateOption("searchTerm", newSearchTerm)
           }
+          onEndEditing={handlSubmit}
           value={searchOptions.searchTerm}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <ButtonBar title={"search"} onPress={handlSubmit} />
-      </View>
+
       <View style={styles.pickersContainer}>
         <Picker
           selectedValue={searchOptions.sortField}
@@ -94,3 +95,9 @@ export default SearchBox = ({ setAndFetch, sources }) => {
     </View>
   );
 };
+
+/*
+ <View style={styles.buttonContainer}>
+        <ButtonBar title={"search"} onPress={handlSubmit} />
+      </View>
+      */

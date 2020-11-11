@@ -15,6 +15,7 @@ import {
 
 import NewsCard from "@components/NewsCard";
 import SearchBox from "@components/SearchBox";
+//import SparkLine from "@components/SparkLine";
 
 import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 
@@ -27,6 +28,7 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   const [resetCount, setResetCount] = useState(0);
 
   const [sources, setSources] = useState([]);
+  const [docCountOverTime, setDocCountOverTime] = useState([]);
 
   const [isLoading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
@@ -54,10 +56,16 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   const fetchNextPage = () => {
     setShouldFetch(false);
     isWithSearch
-      ? fetchArticlesWithOptions(setLoading, setArticles, setSources, {
-          ...searchOptions,
-          ...{ current: page },
-        })
+      ? fetchArticlesWithOptions(
+          setLoading,
+          setArticles,
+          setSources,
+          setDocCountOverTime,
+          {
+            ...searchOptions,
+            ...{ current: page },
+          }
+        )
       : fetchArticlesFromCategory(setLoading, setArticles, category, page);
     setPage(page + 1);
   };
@@ -67,35 +75,42 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
 
   return (
     <View style={styles.container}>
-      {isLoading && articles.length == 0 ? (
-        <ActivityIndicator size="small" color={Colors.activityIndicator} />
-      ) : (
-        <FlatList
-          ListHeaderComponent={
-            <View style={styles.container}>
-              {isWithSearch ? (
-                <SearchBox
-                  setAndFetch={setOptionsAndInitFetch}
-                  sources={sources}
-                />
-              ) : (
-                <View style={styles.titleContainer}>
-                  <Text style={styles.title}>{category}</Text>
-                </View>
-              )}
-            </View>
-          }
-          style={styles.list}
-          data={articles}
-          keyExtractor={_keyExtractor}
-          numColumns={1}
-          onEndReachedThreshold={0.8}
-          onEndReached={fetchMore}
-          renderItem={({ item }) => (
-            <NewsCard navigation={navigation} newsItem={item} />
-          )}
-        />
-      )}
+      <FlatList
+        ListHeaderComponent={
+          <View style={styles.container}>
+            {isWithSearch ? (
+              <SearchBox
+                setAndFetch={setOptionsAndInitFetch}
+                sources={sources}
+              />
+            ) : (
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{category}</Text>
+              </View>
+            )}
+
+            {isLoading && page < 3 ? (
+              <ActivityIndicator
+                size="small"
+                color={Colors.activityIndicator}
+              />
+            ) : (
+              <View />
+            )}
+          </View>
+        }
+        style={styles.list}
+        data={articles}
+        keyExtractor={_keyExtractor}
+        numColumns={1}
+        onEndReachedThreshold={0.8}
+        onEndReached={fetchMore}
+        renderItem={({ item }) => (
+          <NewsCard navigation={navigation} newsItem={item} />
+        )}
+      />
     </View>
   );
 };
+
+//  <SparkLine values={docCountOverTime} />

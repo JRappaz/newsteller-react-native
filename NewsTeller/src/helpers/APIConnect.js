@@ -22,9 +22,16 @@ export const fetchArticlesWithOptions = (
   setLoading,
   setArticles,
   setSources,
+  setDocCountOverTime,
   options
 ) => {
-  fetchApiNewsTeller(setLoading, setArticles, setSources, options);
+  fetchApiNewsTeller(
+    setLoading,
+    setArticles,
+    setSources,
+    setDocCountOverTime,
+    options
+  );
 };
 
 // Global fetching article method, uncomment to choose the source
@@ -76,6 +83,7 @@ const fetchApiNewsTeller = async (
   setLoading,
   setArticles,
   setSources,
+  setDocCountOverTime,
   options
 ) => {
   setLoading(true);
@@ -97,14 +105,24 @@ const fetchApiNewsTeller = async (
     .then((data) => {
       const articles = data.hits;
       const sources = data.aggregations.handle.buckets.map((obj) => obj.key);
+      const docOverTime = processArticleOverTime(
+        data.aggregations.articles_over_time.buckets
+      );
 
       options.current == 1
         ? setArticles(articles)
         : setArticles((prevArticles) => [...prevArticles, ...articles]);
       setSources(sources);
-
+      setDocCountOverTime(docOverTime);
       setLoading(false);
     });
+};
+
+const processArticleOverTime = (buckets) => {
+  return buckets.map((b) => {
+    let newObj = { value: b.key, count: b.doc_count };
+    return newObj;
+  });
 };
 
 /* ============================= Local Json server ============================= */
