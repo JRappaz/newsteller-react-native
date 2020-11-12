@@ -9,7 +9,7 @@ import {
 
 import NewsCard from "@components/NewsCard";
 import SearchBox from "@components/SearchBox";
-//import SparkLine from "@components/SparkLine";
+import SparkLine from "@components/SparkLine";
 
 import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 
@@ -48,7 +48,6 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   };
 
   const fetchNextPage = () => {
-    console.log(searchOptions);
     setShouldFetch(false);
     isWithSearch
       ? fetchArticlesWithOptions(
@@ -83,7 +82,6 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
                 <Text style={styles.title}>{category}</Text>
               </View>
             )}
-
             {isLoading && page < 3 ? (
               <ActivityIndicator
                 size="small"
@@ -92,6 +90,7 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
             ) : (
               <View />
             )}
+            <SparkLine values={docCountOverTime} />
           </View>
         }
         style={styles.list}
@@ -108,4 +107,4 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   );
 };
 
-//  <SparkLine values={docCountOverTime} />
+//
