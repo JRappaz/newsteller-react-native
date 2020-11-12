@@ -54,6 +54,7 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   };
 
   const fetchNextPage = () => {
+    console.log(searchOptions);
     setShouldFetch(false);
     isWithSearch
       ? fetchArticlesWithOptions(

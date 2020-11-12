@@ -33,21 +33,27 @@ export const styles = createStyles({
     flexDirection: "row",
     alignItems: "center",
   },
-  pickersContainer: {
-    ...BasicStyles.container,
+  textInput: {
     flex: 1,
-    flexDirection: "row",
-  },
-  smallPicker: {
-    flex: 4,
-  },
-  largePicker: {
-    flex: 5,
   },
   logo: {
     width: Shapes.smallSize,
     height: Shapes.smallSize,
     resizeMode: "contain",
     marginRight: Spaces.mid,
+  },
+  filterItem: {
+    backgroundColor: Colors.SECONDARY_COLOR_LIGHT,
+    marginVertical: Spaces.small,
+    marginHorizontal: Spaces.small,
+    borderRadius: Shapes.rounded,
+    padding: Spaces.small,
+  },
+  filterItemSelected: {
+    backgroundColor: Colors.SECONDARY_COLOR,
+    marginVertical: Spaces.small,
+    marginHorizontal: Spaces.small,
+    borderRadius: Shapes.rounded,
+    padding: Spaces.small,
   },
 });
