@@ -1,11 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import {
-  View,
-  FlatList,
-  ActivityIndicator,
-  TextInput,
-  Text,
-} from "react-native";
+import { View, FlatList, ActivityIndicator, Text } from "react-native";
 import { styles } from "./style";
 import { Colors } from "@styles";
 import {

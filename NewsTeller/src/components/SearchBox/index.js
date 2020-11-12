@@ -8,17 +8,30 @@ import { NewsTellerLogoTransparent } from "@assets/icons";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 /**
- *  Search box to let user select search options
+ *  Search box to let user search a term, filter and sort the results
+ *  Below is an example of options for a query:
+ *
+ * aggregations: "articles_over_time",
+ * filters: [
+ *  { field: "lang", values: ["fr"], type: "all" },
+ *  { field: "handle", values: ["BFMTV"], type: "all" },
+ * ],
+ * searchTerm: "",
+ * sortDirection: "desc",
+ * sortField: "date"
+ *
  */
 export default SearchBox = ({ setAndFetch, sources }) => {
   const [shouldSubmit, setShouldSubmit] = useState(false);
 
+  // When a action is performed on the options, shouldSubmit is set to true
   useEffect(() => {
     if (shouldSubmit) {
       handlSubmit();
     }
   }, [shouldSubmit]);
 
+  // submit selected options for a query
   const handlSubmit = () => {
     setShouldSubmit(false);
     const finalOptions = { ...DEFAULT_SEARCH_OPTIONS };
@@ -38,8 +51,10 @@ export default SearchBox = ({ setAndFetch, sources }) => {
     setAndFetch(finalOptions);
   };
 
+  // searchTerm option
   const [searchTerm, setSearchTerm] = useState("");
 
+  // lang filter => language
   const ALL_LANGUAGES = { label: "All languages", value: null };
   const AVAILABLE_LANGUAGES = [
     ALL_LANGUAGES,
@@ -49,7 +64,13 @@ export default SearchBox = ({ setAndFetch, sources }) => {
     { label: "German", value: "de" },
   ];
   const [lang, setLang] = useState(ALL_LANGUAGES.value);
+  // Set source to all sources when a language is selected
+  const updateLang = (newValue) => {
+    setLang(newValue);
+    setSource(ALL_SOURCES.value);
+  };
 
+  // Handle filter => source
   const ALL_SOURCES = { label: "All sources", value: null };
   const AVAILABLE_SOURCES = [
     ALL_SOURCES,
@@ -60,13 +81,14 @@ export default SearchBox = ({ setAndFetch, sources }) => {
   ];
   const [source, setSource] = useState(ALL_SOURCES.value);
 
+  // SortField Option
   const AVAILABLE_SORT = [
     { label: "Date", value: "date" },
     { label: "Hot", value: "hot" },
   ];
   const [sort, setSort] = useState(AVAILABLE_SORT[0].value);
 
-  const selectableListItem = (setCurrent, item, selected) => {
+  const selectableItem = (setCurrent, item, selected) => {
     return (
       <TouchableOpacity
         style={
@@ -93,26 +115,26 @@ export default SearchBox = ({ setAndFetch, sources }) => {
           onChangeText={(newSearchTerm) => setSearchTerm(newSearchTerm)}
           onEndEditing={() => setShouldSubmit(true)}
           value={searchTerm}
-          style={styles.textInput}
+          style={[styles.textInput, styles.text]}
         />
       </View>
       <FlatList
         data={AVAILABLE_LANGUAGES}
         horizontal={true}
         keyExtractor={_keyExtractor}
-        renderItem={({ item }) => selectableListItem(setLang, item, lang)}
+        renderItem={({ item }) => selectableItem(updateLang, item, lang)}
       />
       <FlatList
         data={AVAILABLE_SOURCES}
         horizontal={true}
         keyExtractor={_keyExtractor}
-        renderItem={({ item }) => selectableListItem(setSource, item, source)}
+        renderItem={({ item }) => selectableItem(setSource, item, source)}
       />
       <FlatList
         data={AVAILABLE_SORT}
         horizontal={true}
         keyExtractor={_keyExtractor}
-        renderItem={({ item }) => selectableListItem(setSort, item, sort)}
+        renderItem={({ item }) => selectableItem(setSort, item, sort)}
       />
     </View>
   );
