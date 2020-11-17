@@ -121,18 +121,21 @@ export default SearchBox = ({ setAndFetch, sources }) => {
       <FlatList
         data={AVAILABLE_LANGUAGES}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={_keyExtractor}
         renderItem={({ item }) => selectableItem(updateLang, item, lang)}
       />
       <FlatList
         data={AVAILABLE_SOURCES}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={_keyExtractor}
         renderItem={({ item }) => selectableItem(setSource, item, source)}
       />
       <FlatList
         data={AVAILABLE_SORT}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={_keyExtractor}
         renderItem={({ item }) => selectableItem(setSort, item, sort)}
       />
