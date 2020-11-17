@@ -57,7 +57,7 @@ const fetchApiNewsTeller = async (
 ) => {
   setLoading(true);
 
-  const url = "https://newsteller.io/api/v1/article/search/";
+  const url = "https://newsteller.io/api/v1/articles/search/";
 
   const string = JSON.stringify(options);
 
