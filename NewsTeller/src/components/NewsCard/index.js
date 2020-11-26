@@ -8,7 +8,11 @@ import { styles } from "./style";
  *  The card is clickable: on click navigate to WebDisplayer page
  */
 
-export default memo(function NewsCard({ navigation, newsItem }) {
+export default memo(function NewsCard({
+  navigation,
+  newsItem,
+  shouldDisplayTag,
+}) {
   const getReaction = () => {
     return (
       newsItem.favoriteCount +
@@ -29,19 +33,30 @@ export default memo(function NewsCard({ navigation, newsItem }) {
       <View style={styles.textContainer}>
         <Text style={styles.title2}>{newsItem.title}</Text>
         <View style={styles.metaDataBox}>
-          <Text style={styles.text}>{newsItem.sourceName}</Text>
-          <Text style={styles.text}>{"-"}</Text>
-          <Text style={styles.text}>
+          <Text style={styles.metaText}>{newsItem.sourceName}</Text>
+          <Text style={styles.metaText}>{"-"}</Text>
+          <Text style={styles.metaText}>
             {
               //getReaction() == 0 ? "No reactions" : getReaction()
               getReaction()
             }
           </Text>
-          <Text style={styles.text}>{"-"}</Text>
-          <Text style={styles.text}>
+          <Text style={styles.metaText}>{"-"}</Text>
+          <Text style={styles.metaText}>
             {new Date(newsItem.publishDatetime).toLocaleDateString()}
           </Text>
         </View>
+        {shouldDisplayTag ? (
+          <View style={styles.tagBox}>
+            {newsItem.tags.map((tag) => (
+              <Text key={tag} style={styles.tagText}>
+                {tag}
+              </Text>
+            ))}
+          </View>
+        ) : (
+          <View />
+        )}
       </View>
       <View style={styles.imageContainer}>
         {newsItem.topImageURL ? (

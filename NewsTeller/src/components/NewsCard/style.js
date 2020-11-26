@@ -17,17 +17,26 @@ export const styles = createStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  title2: {
-    ...BasicStyles.title2,
-    color: Colors.title,
-  },
-  text: {
+  metaText: {
+    ...BasicStyles.text,
     color: Colors.metaData,
   },
   metaDataBox: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: Spaces.mid,
+  },
+  tagBox: {
+    flexDirection: "row",
+    marginTop: Spaces.mid,
+  },
+  tagText: {
+    ...BasicStyles.text,
+    backgroundColor: Colors.LIGHT_GREY,
+    padding: Spaces.small,
+    borderRadius: Shapes.veryRounded,
+    paddingHorizontal: Spaces.mid,
+    marginHorizontal: Spaces.small,
   },
   textContainer: {
     ...BasicStyles.container,

@@ -16,7 +16,12 @@ import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
  *    category - set the category of the NewsList
  *    isWithSearch - if true allow user to do search from a text input
  */
-export default NewsList = ({ navigation, category, isWithSearch = false }) => {
+export default NewsList = ({
+  navigation,
+  category,
+  isWithSearch = false,
+  shouldDisplayTag,
+}) => {
   // Data
   const [sources, setSources] = useState([]);
   const [docCountOverTime, setDocCountOverTime] = useState([]);
@@ -119,7 +124,11 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
         onEndReachedThreshold={0.8}
         onEndReached={fetchMore}
         renderItem={({ item }) => (
-          <NewsCard navigation={navigation} newsItem={item} />
+          <NewsCard
+            navigation={navigation}
+            newsItem={item}
+            shouldDisplayTag={shouldDisplayTag}
+          />
         )}
       />
     </View>

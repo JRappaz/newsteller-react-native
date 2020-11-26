@@ -44,6 +44,7 @@ export default SwipeableNewsList = ({ navigation }) => {
                 navigation={navigation}
                 category={item}
                 isWithSearch={item == ""}
+                shouldDisplayTag={item == ""}
               />
             ))
           }
