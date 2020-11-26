@@ -5,24 +5,22 @@ import {
   Shapes,
   Spaces,
   BasicStyles,
-} from '@styles';
+} from "@styles";
 
 export const styles = createStyles({
   container: {
-    ...BasicStyles.container,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  title: {
-    ...BasicStyles.title1,
-    fontWeight: 'bold',
+  title1: {
+    fontWeight: "bold",
     color: Colors.headerText,
   },
   logo: {
     width: Shapes.midSize,
     height: Shapes.midSize,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginRight: Spaces.mid,
   },
 });

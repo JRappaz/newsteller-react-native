@@ -5,20 +5,19 @@ import {
   Shapes,
   Spaces,
   BasicStyles,
-} from '@styles';
+} from "@styles";
 
 export const styles = createStyles({
   container: {
-    width: '100%',
+    width: "100%",
     height: Shapes.midSize,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: Colors.buttons,
     borderRadius: Shapes.rounded,
     opacity: 0.6,
   },
-  title: {
-    ...BasicStyles.title1,
+  title1: {
     color: Colors.buttonsText,
   },
 });

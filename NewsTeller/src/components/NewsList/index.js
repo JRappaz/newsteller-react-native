@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, FlatList, ActivityIndicator, Text } from "react-native";
+import { View, FlatList, ActivityIndicator, Text, Switch } from "react-native";
 import { styles } from "./style";
 import { Colors } from "@styles";
-import {
-  fetchArticlesWithOptions,
-  fetchArticlesFromCategory,
-} from "@helpers/APIConnect";
+import { fetchArticlesWithOptions } from "@helpers/APIConnect";
 
 import NewsCard from "@components/NewsCard";
 import SearchBox from "@components/SearchBox";
@@ -32,6 +29,8 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
   const [shouldFetch, setShouldFetch] = useState(true);
   const [page, setPage] = useState(1);
 
+  const [sortingForCategories, setSortingForCategories] = useState(false);
+
   const fetchMore = useCallback(() => setShouldFetch(true), []);
 
   useEffect(() => {
@@ -49,19 +48,39 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
 
   const fetchNextPage = () => {
     setShouldFetch(false);
-    isWithSearch
-      ? fetchArticlesWithOptions(
-          setLoading,
-          setArticles,
-          setSources,
-          setDocCountOverTime,
-          {
-            ...searchOptions,
-            ...{ current: page },
-          }
-        )
-      : fetchArticlesFromCategory(setLoading, setArticles, category, page);
+
+    const finalOptions = {
+      ...searchOptions,
+      ...{ current: page },
+    };
+
+    if (!isWithSearch) {
+      const filters = [];
+      filters.push({ field: "tags", values: [category], type: "all" });
+      finalOptions["filters"] = filters;
+    }
+
+    console.log(finalOptions);
+
+    fetchArticlesWithOptions(
+      setLoading,
+      setArticles,
+      setSources,
+      setDocCountOverTime,
+      finalOptions
+    );
     setPage(page + 1);
+  };
+
+  const swtichPressed = () => {
+    setSortingForCategories((previousState) => !previousState);
+    const newOptions = {
+      ...searchOptions,
+      sortField: sortingForCategories ? "date" : "hot",
+    };
+    setSearchOptions(newOptions);
+    setPage(1);
+    setShouldFetch(true);
   };
 
   const _keyExtractor = (item, index) =>
@@ -79,7 +98,22 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
               />
             ) : (
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{category}</Text>
+                <Text style={styles.title1}>{category}</Text>
+                <View style={styles.switchContainer}>
+                  <Text style={styles.text}>{"Date"}</Text>
+
+                  <Switch
+                    trackColor={{
+                      false: Colors.LIGHT_GREY,
+                      true: Colors.LIGHT_GREY,
+                    }}
+                    thumbColor={Colors.SECONDARY_COLOR}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={swtichPressed}
+                    value={sortingForCategories}
+                  />
+                  <Text style={styles.text}>{"Hot"}</Text>
+                </View>
               </View>
             )}
             {isLoading && page < 3 ? (

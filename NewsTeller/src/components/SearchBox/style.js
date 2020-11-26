@@ -9,7 +9,6 @@ import {
 
 export const styles = createStyles({
   container: {
-    ...BasicStyles.container,
     width: "85%",
   },
   bottomContainer: {

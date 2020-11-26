@@ -9,7 +9,6 @@ import {
 
 export const styles = createStyles({
   container: {
-    ...BasicStyles.container,
     width: "85%",
     backgroundColor: Colors.newsCardBackground,
     marginBottom: Spaces.mid,
@@ -18,12 +17,11 @@ export const styles = createStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  title: {
+  title2: {
     ...BasicStyles.title2,
     color: Colors.title,
   },
   text: {
-    ...BasicStyles.text,
     color: Colors.metaData,
   },
   metaDataBox: {
@@ -44,5 +42,8 @@ export const styles = createStyles({
     height: 60,
     borderRadius: Shapes.veryRounded,
   },
-  image: { flex: 1, borderRadius: Shapes.veryRounded },
+  image: {
+    flex: 1,
+    borderRadius: Shapes.veryRounded,
+  },
 });

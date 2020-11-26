@@ -10,6 +10,16 @@ export const DEFAULT_SEARCH_OPTIONS = {
   sortField: "date",
 };
 
+const categories = [
+  "Economy",
+  "Politics",
+  "International",
+  "Sport",
+  "Technology",
+  "Culture",
+  "Health",
+];
+
 // Global fetching article method, uncomment to choose the source
 export const fetchArticlesWithOptions = (
   setLoading,
@@ -27,22 +37,12 @@ export const fetchArticlesWithOptions = (
   );
 };
 
-// Global fetching article method, uncomment to choose the source
-export const fetchArticlesFromCategory = (
-  setLoading,
-  setArticles,
-  category,
-  pageToken
-) => {
-  //fetchNewsLocalServer(setLoading, setArticles, searchTerm);
-  //fetchApiNewsTeller(setLoading, setArticles, searchTerm);
-  loadArticles(setLoading, setArticles, category);
-};
-
 // Global fetching categories method, uncomment to choose the source
-export const fetchCategoriesApi = (setLoading, setCategories) => {
+export const fetchCategories = (setLoading, setCategories) => {
+  setCategories(categories);
+  setLoading(false);
   //fetchCategoriesLocalServer(setLoading, setCategories);
-  loadCategories(setLoading, setCategories);
+  //loadCategories(setLoading, setCategories);
 };
 
 /* ============================= News-Teller API ============================= */
@@ -92,6 +92,20 @@ const processArticleOverTime = (buckets) => {
     let newObj = { value: b.key, count: b.doc_count };
     return newObj;
   });
+};
+
+/* ============================= EVERYTHING BELOW THIS POINT IS NOT USED ============================= */
+
+// Global fetching article method, uncomment to choose the source
+export const fetchArticlesFromCategory = (
+  setLoading,
+  setArticles,
+  category,
+  pageToken
+) => {
+  //fetchNewsLocalServer(setLoading, setArticles, searchTerm);
+  //fetchApiNewsTeller(setLoading, setArticles, searchTerm);
+  loadArticles(setLoading, setArticles, category);
 };
 
 /* ============================= Local Json server ============================= */

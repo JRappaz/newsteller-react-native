@@ -6,7 +6,7 @@ import { styles } from "./style";
 import NewsList from "@components/NewsList";
 import Swiper from "react-native-swiper";
 
-import { fetchCategoriesApi } from "@helpers/APIConnect";
+import { fetchCategories } from "@helpers/APIConnect";
 import { View, ActivityIndicator, Text } from "react-native";
 
 /**
@@ -18,13 +18,13 @@ export default SwipeableNewsList = ({ navigation }) => {
 
   useEffect(() => {
     // Fetch which categories are available
-    fetchCategoriesApi(setLoading, setCategories);
+    fetchCategories(setLoading, setCategories);
   }, []);
 
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <ActivityIndicator size="small" color="#0000ff" />
+        <ActivityIndicator size="small" color={Colors.SECONDARY_COLOR} />
       ) : (
         <Swiper
           loop={false}

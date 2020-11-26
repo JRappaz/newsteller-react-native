@@ -13,8 +13,7 @@ export const styles = createStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  title: {
-    ...BasicStyles.title1,
+  title1: {
     fontSize: TextFormat.extraLargeSize,
     alignSelf: "center",
     color: Colors.SECONDARY_COLOR,
@@ -24,5 +23,11 @@ export const styles = createStyles({
     width: "100%",
     marginTop: Spaces.mid,
     marginBottom: 60,
+  },
+  switchContainer: {
+    ...BasicStyles.container,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

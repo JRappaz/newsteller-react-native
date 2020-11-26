@@ -11,10 +11,10 @@ import { styles } from "./style";
 export default memo(function NewsCard({ navigation, newsItem }) {
   const getReaction = () => {
     return (
-      newsItem.favorite_count +
-      newsItem.quote_count +
-      newsItem.reply_count +
-      newsItem.retweet_count
+      newsItem.favoriteCount +
+      newsItem.quoteCount +
+      newsItem.replyCount +
+      newsItem.retweetCount
     );
   };
 
@@ -27,25 +27,28 @@ export default memo(function NewsCard({ navigation, newsItem }) {
       }}
     >
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{newsItem.title}</Text>
+        <Text style={styles.title2}>{newsItem.title}</Text>
         <View style={styles.metaDataBox}>
-          <Text style={styles.text}>{newsItem.handle}</Text>
+          <Text style={styles.text}>{newsItem.sourceName}</Text>
           <Text style={styles.text}>{"-"}</Text>
           <Text style={styles.text}>
-            {getReaction() == 0 ? "No reactions" : getReaction()}
+            {
+              //getReaction() == 0 ? "No reactions" : getReaction()
+              getReaction()
+            }
           </Text>
           <Text style={styles.text}>{"-"}</Text>
           <Text style={styles.text}>
-            {new Date(newsItem.publish_datetime).toLocaleDateString()}
+            {new Date(newsItem.publishDatetime).toLocaleDateString()}
           </Text>
         </View>
       </View>
       <View style={styles.imageContainer}>
-        {newsItem.image_url ? (
+        {newsItem.topImageURL ? (
           <Image
             style={styles.image}
             source={{
-              uri: newsItem.image_url,
+              uri: newsItem.topImageURL,
             }}
           />
         ) : (
