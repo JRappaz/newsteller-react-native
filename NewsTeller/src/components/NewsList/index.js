@@ -60,8 +60,6 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
       finalOptions["filters"] = filters;
     }
 
-    console.log(finalOptions);
-
     fetchArticlesWithOptions(
       setLoading,
       setArticles,
@@ -70,6 +68,12 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
       finalOptions
     );
     setPage(page + 1);
+  };
+
+  const refresh = () => {
+    setPage(1);
+    setLoading(true);
+    setShouldFetch(true);
   };
 
   const swtichPressed = () => {
@@ -127,6 +131,8 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
             <SparkLine values={docCountOverTime} />
           </View>
         }
+        onRefresh={refresh}
+        refreshing={false}
         style={styles.list}
         data={articles}
         keyExtractor={_keyExtractor}
