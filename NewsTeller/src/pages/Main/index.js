@@ -1,17 +1,17 @@
-import React from 'react';
-import {View} from 'react-native';
+import React from "react";
+import { SafeAreaView } from "react-native";
 
-import {styles} from './style';
+import { styles } from "./style";
 
-import SwipeableNewsList from '@components/SwipeableNewsList';
+import SwipeableNewsList from "@components/SwipeableNewsList";
 
 /**
  * Main page, display a SwipeableNewsList
  */
-export default Main = ({navigation}) => {
+export default Main = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SwipeableNewsList navigation={navigation} />
-    </View>
+    </SafeAreaView>
   );
 };
