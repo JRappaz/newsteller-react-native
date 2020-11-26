@@ -7,6 +7,7 @@ import { fetchArticlesWithOptions } from "@helpers/APIConnect";
 import NewsCard from "@components/NewsCard";
 import SearchBox from "@components/SearchBox";
 import SparkLine from "@components/SparkLine";
+import SwitchButton from "@components/SwitchButton";
 
 import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 
@@ -16,20 +17,16 @@ import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
  *    isWithSearch - if true allow user to do search from a text input
  */
 export default NewsList = ({ navigation, category, isWithSearch = false }) => {
-  const [resetCount, setResetCount] = useState(0);
-
+  // Data
   const [sources, setSources] = useState([]);
   const [docCountOverTime, setDocCountOverTime] = useState([]);
-
-  const [isLoading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
 
-  const [searchOptions, setSearchOptions] = useState(DEFAULT_SEARCH_OPTIONS);
-
+  // Fetching logic
   const [shouldFetch, setShouldFetch] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [searchOptions, setSearchOptions] = useState(DEFAULT_SEARCH_OPTIONS);
   const [page, setPage] = useState(1);
-
-  const [sortingForCategories, setSortingForCategories] = useState(false);
 
   const fetchMore = useCallback(() => setShouldFetch(true), []);
 
@@ -37,11 +34,10 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
     if (shouldFetch) {
       fetchNextPage();
     }
-  }, [shouldFetch, resetCount]);
+  }, [shouldFetch]);
 
   const setOptionsAndInitFetch = (options) => {
     setPage(1);
-    setResetCount(resetCount + 1);
     setSearchOptions(options);
     setShouldFetch(true);
   };
@@ -70,25 +66,15 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
     setPage(page + 1);
   };
 
-  const refresh = () => {
-    setPage(1);
-    setLoading(true);
-    setShouldFetch(true);
-  };
-
-  const swtichPressed = () => {
-    setSortingForCategories((previousState) => !previousState);
+  const onSwitchPressed = (value) => {
     const newOptions = {
       ...searchOptions,
-      sortField: sortingForCategories ? "date" : "hot",
+      sortField: value,
     };
-    setSearchOptions(newOptions);
-    setPage(1);
-    setShouldFetch(true);
+    setOptionsAndInitFetch(newOptions);
   };
 
-  const _keyExtractor = (item, index) =>
-    "r-" + resetCount + "-list-item-" + index;
+  const _keyExtractor = (item, index) => "-list-item-" + index;
 
   return (
     <View style={styles.container}>
@@ -103,21 +89,14 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
             ) : (
               <View style={styles.titleContainer}>
                 <Text style={styles.title1}>{category}</Text>
-                <View style={styles.switchContainer}>
-                  <Text style={styles.text}>{"Date"}</Text>
-
-                  <Switch
-                    trackColor={{
-                      false: Colors.LIGHT_GREY,
-                      true: Colors.LIGHT_GREY,
-                    }}
-                    thumbColor={Colors.SECONDARY_COLOR}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={swtichPressed}
-                    value={sortingForCategories}
-                  />
-                  <Text style={styles.text}>{"Hot"}</Text>
-                </View>
+                <SwitchButton
+                  style={styles.switch}
+                  textLeft={"Date"}
+                  textRight={"Hot"}
+                  valueLeft={"date"}
+                  valueRight={"hot"}
+                  onSwitchPressed={onSwitchPressed}
+                />
               </View>
             )}
             {isLoading && page < 3 ? (
@@ -131,7 +110,7 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
             <SparkLine values={docCountOverTime} />
           </View>
         }
-        onRefresh={refresh}
+        onRefresh={() => setOptionsAndInitFetch(searchOptions)}
         refreshing={false}
         style={styles.list}
         data={articles}
@@ -146,5 +125,3 @@ export default NewsList = ({ navigation, category, isWithSearch = false }) => {
     </View>
   );
 };
-
-//
