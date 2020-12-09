@@ -49,9 +49,11 @@ export default memo(function NewsCard({
         {shouldDisplayTag ? (
           <View style={styles.tagBox}>
             {newsItem.tags.map((tag) => (
-              <Text key={tag} style={styles.tagText}>
-                {tag}
-              </Text>
+              <View style={styles.tagItem}>
+                <Text key={tag} style={styles.tagText}>
+                  {tag}
+                </Text>
+              </View>
             ))}
           </View>
         ) : (

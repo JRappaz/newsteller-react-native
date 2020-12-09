@@ -31,13 +31,15 @@ export const styles = createStyles({
     flexDirection: "row",
     marginTop: Spaces.mid,
   },
-  tagText: {
-    ...BasicStyles.text,
+  tagItem: {
     backgroundColor: Colors.tag,
     padding: Spaces.small,
     borderRadius: Shapes.veryRounded,
     paddingHorizontal: Spaces.mid,
     marginHorizontal: Spaces.small,
+  },
+  tagText: {
+    ...BasicStyles.text,
   },
   textContainer: {
     ...BasicStyles.container,
