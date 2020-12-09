@@ -12,6 +12,7 @@ export const styles = createStyles({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: "transparent",
   },
   title1: {
     fontWeight: "bold",

@@ -1,22 +1,8 @@
-export const WHITE = "white";
-export const BLACK = "black";
-export const GREY = "grey";
-export const SECONDARY_COLOR = "#4aa69d";
-export const SECONDARY_COLOR_LIGHT = "#daecea";
+import * as Colors_light from "./colors_light";
+import * as Colors_dark from "./colors_dark";
+import { Appearance } from "react-native";
 
-export const LIGHT_GREY = "#eee";
+const colorScheme = Appearance.getColorScheme();
+const Colors = colorScheme === "dark" ? Colors_dark : Colors_light;
 
-export const background = WHITE;
-export const headerColor = WHITE;
-export const newsCardBackground = WHITE;
-export const activityIndicator = SECONDARY_COLOR;
-export const buttons = SECONDARY_COLOR;
-export const textInputs = LIGHT_GREY;
-export const metaData = GREY;
-
-export const text = BLACK;
-export const title = BLACK;
-export const buttonsText = BLACK;
-export const headerText = BLACK;
-
-export const EMPTY_IMAGE = GREY;
+export { Colors };

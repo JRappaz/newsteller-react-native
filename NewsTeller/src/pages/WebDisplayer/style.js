@@ -5,6 +5,10 @@ import {
   Shapes,
   Spaces,
   BasicStyles,
-} from '@styles';
+} from "@styles";
 
-export const styles = createStyles({});
+export const styles = createStyles({
+  webView: {
+    backgroundColor: Colors.background,
+  },
+});

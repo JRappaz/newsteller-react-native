@@ -1,8 +1,9 @@
-import * as Colors from "./colors";
 import * as TextFormat from "./text";
 import * as Shapes from "./shapes";
 import * as Spaces from "./spaces";
 import * as BasicStyles from "./basicStyles";
+
+import { Colors } from "./colors";
 
 export { Colors, TextFormat, Shapes, Spaces, BasicStyles };
 

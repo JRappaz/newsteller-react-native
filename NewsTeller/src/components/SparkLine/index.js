@@ -2,6 +2,8 @@ import React, { useEffect, memo } from "react";
 import { View, Dimensions } from "react-native";
 import { styles } from "./style";
 
+import { Colors } from "@styles";
+
 import { LineChart } from "react-native-chart-kit";
 
 /**
@@ -19,7 +21,7 @@ export default memo(function SparkLine({ values = [] }) {
           datasets: [
             {
               data: data,
-              color: (opacity = 1) => `rgba(11, 11, 11, ${opacity})`,
+              color: (opacity = 1) => Colors.sparkline,
               strokeWidth: 1,
             },
           ],
@@ -29,20 +31,23 @@ export default memo(function SparkLine({ values = [] }) {
         yAxisLabel=""
         yAxisSuffix=""
         yAxisInterval={1}
+        withDots={false}
+        withShadow={false}
+        withInnerLines={false}
         chartConfig={{
-          backgroundColor: "#ffffff",
-          backgroundGradientFrom: "#ffffff",
-          backgroundGradientTo: "#ffffff",
+          backgroundColor: Colors.background,
+          backgroundGradientFrom: Colors.background,
+          backgroundGradientTo: Colors.background,
           decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          labelColor: (opacity = 0) => `rgba(255, 255, 255, ${opacity})`,
+          color: (opacity = 1) => Colors.background,
+          labelColor: (opacity = 1) => Colors.background,
           style: {
             borderRadius: 16,
           },
           propsForDots: {
             r: "0",
             strokeWidth: "1",
-            stroke: "#000000",
+            stroke: Colors.background,
           },
         }}
         bezier

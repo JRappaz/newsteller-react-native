@@ -16,6 +16,7 @@ export const styles = createStyles({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: Shapes.veryRounded,
   },
   metaText: {
     ...BasicStyles.text,
@@ -32,7 +33,7 @@ export const styles = createStyles({
   },
   tagText: {
     ...BasicStyles.text,
-    backgroundColor: Colors.LIGHT_GREY,
+    backgroundColor: Colors.tag,
     padding: Spaces.small,
     borderRadius: Shapes.veryRounded,
     paddingHorizontal: Spaces.mid,
@@ -41,6 +42,7 @@ export const styles = createStyles({
   textContainer: {
     ...BasicStyles.container,
     flex: 4,
+    backgroundColor: Colors.newsCardBackground,
   },
   imageContainer: {
     ...BasicStyles.container,

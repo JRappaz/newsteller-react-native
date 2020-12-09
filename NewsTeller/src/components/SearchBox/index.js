@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, TextInput, Image, Text } from "react-native";
 import { styles } from "./style";
 
+import { Colors } from "@styles";
+
 import { DEFAULT_SEARCH_OPTIONS } from "@helpers/APIConnect";
 
 import { NewsTellerLogoTransparent } from "@assets/icons";
@@ -112,6 +114,7 @@ export default SearchBox = ({ setAndFetch, sources }) => {
         <Image source={NewsTellerLogoTransparent} style={styles.logo} />
         <TextInput
           placeholder="Search..."
+          placeholderTextColor={Colors.textInputsPlaceHolder}
           onChangeText={(newSearchTerm) => setSearchTerm(newSearchTerm)}
           onEndEditing={() => setShouldSubmit(true)}
           value={searchTerm}
