@@ -7,7 +7,7 @@
 * [Setup](#setup)
 
 ## General info
-NewsTeller is a research-driven platform to analyze news. This project is an introduction to a possible mobile application. This application displays multiple news feeds based on categories. It lets user do basic word related queries.
+NewsTeller is a research-driven platform to analyze news. This project is an introduction to a possible mobile application. This application displays multiple news feeds based on categories. It lets user do sophisticated queries.
 
 <img src="https://user-images.githubusercontent.com/44334351/101805135-b231f280-3b12-11eb-9326-1e720cf1a9e0.jpg" width="200"> <img src="https://user-images.githubusercontent.com/44334351/101805133-b1995c00-3b12-11eb-99c5-1ee6c15bb716.jpg" width="200"> <img src="https://user-images.githubusercontent.com/44334351/101805122-acd4a800-3b12-11eb-8498-75550bacc07c.jpeg" width="200"> <img src="https://user-images.githubusercontent.com/44334351/101805131-b0682f00-3b12-11eb-8648-59ba6cbd28b5.jpg" width="200">
 
@@ -15,7 +15,7 @@ NewsTeller is a research-driven platform to analyze news. This project is an int
 
 ### Components
 [Components](src/components) are react-native bricks. They are used to build pages.
-There are three components:
+There are seven components used in this application:
 * [NewsCard](src/components/NewsCard) is the representation of a news article.
 * [NewsList](src/components/NewsList) is a list of NewsCards. It could feature a search box.
 * [SwipeableNewsList](src/components/SwipeableNewsList) is a swiper between multiple NewsList.
